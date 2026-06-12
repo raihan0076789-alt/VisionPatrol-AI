@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./index.css";
+import UploadPage from "./pages/upload/UploadPage";
 import AppLayout from "./components/layout/AppLayout";
 import LoginPage from "./pages/auth/LoginPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
@@ -26,6 +27,8 @@ createRoot(document.getElementById("root")!).render(
             <Route path="challans" element={<ChallansPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
             <Route path="vehicles" element={<VehiclesPage />} />
+            // inside Routes, add:
+            <Route path="upload" element={<UploadPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

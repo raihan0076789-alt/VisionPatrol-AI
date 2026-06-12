@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, AlertTriangle, FileText, BarChart3, Car, LogOut, Shield } from "lucide-react";
+import { LayoutDashboard, AlertTriangle, FileText, BarChart3, Car, LogOut, Shield, Upload } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
+
 
 const navItems = [
   { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { to: "/upload", icon: Upload, label: "Upload Video" },       // add this
   { to: "/violations", icon: AlertTriangle, label: "Violations" },
   { to: "/challans", icon: FileText, label: "Challans" },
   { to: "/analytics", icon: BarChart3, label: "Analytics" },
