@@ -10,13 +10,10 @@ from app.api import auth, violations, challans, analytics
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create folders first
     os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
     os.makedirs(f"{settings.UPLOAD_DIR}/evidence", exist_ok=True)
     os.makedirs(f"{settings.UPLOAD_DIR}/challans", exist_ok=True)
     os.makedirs(f"{settings.UPLOAD_DIR}/videos", exist_ok=True)
-
-    # Mount static files after folders exist
     app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
     yield
 
@@ -28,15 +25,15 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Fix CORS — allow all origins in development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.get_allowed_origins(),
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Register all routers
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(violations.router, prefix="/api/v1")
 app.include_router(challans.router, prefix="/api/v1")
